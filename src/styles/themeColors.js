@@ -20,6 +20,10 @@ const themeColors = css`
         --quote-bgColor: #2A313B;
         --blog-headerBgColor: #2A313B;
         --blog-footerBgColor: #162447;
+        --blog-linkColor: rgb(96, 179, 251);
+        --blog-underlineBg: rgba(250, 240, 137, 0.16);
+        --blog-underlineColor: rgb(250, 240, 137);
+        --search-shadowColor: #262626;
     }
 
     .light {
@@ -32,6 +36,10 @@ const themeColors = css`
         --quote-bgColor: #e9e9e9;
         --blog-headerBgColor: #2A313B;
         --blog-footerBgColor: #323DA5;
+        --blog-linkColor: hsl(208,99%,44%);
+        --blog-underlineBg: #fefcbf;
+        --blog-underlineColor: #744210;
+        --search-shadowColor: #dddee1;
     }
 `;
 

@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 import Container from '../styles/container';
-import Button from '../components/Button';
+import NewsletterForm from '../components/NewsletterForm';
 
 const Svg = styled.svg`    
     display: block;
@@ -21,11 +21,25 @@ const FooterFlex = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: start;
-   
 
     div + div {
         margin-left: 3rem;
-    }
+    } 
+
+    @media only screen and (max-width: 900px){
+        div + div {
+            margin-left: 2rem;
+        }
+    } 
+
+    @media only screen and (max-width: 600px){
+        flex-wrap: wrap;
+        align-content: space-around;
+
+        div + div {
+            margin: 2rem 0 0 0;
+        }
+    } 
 `;
 
 const FooterSiteDescription = styled.div`
@@ -34,6 +48,21 @@ const FooterSiteDescription = styled.div`
     p {
         width: 80%;
         margin: 1rem 0;
+        font-family: 'Merriweather', serif;
+        font-size: 1.6rem;
+        line-height: 1.6;
+    }
+    
+    @media only screen and (max-width: 900px){
+        p {
+            width: 90%;
+        }
+    }
+    
+    @media only screen and (max-width: 600px){
+        p {
+            width: 100%;
+        }
     }
 `;
 
@@ -41,6 +70,15 @@ const NavigationLinks = styled.div`
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
+    
+    @media only screen and (max-width: 600px){
+        flex-basis: 100%;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
 
     ul {
         padding: 0;
@@ -64,7 +102,9 @@ const NavigationLinks = styled.div`
 
 const FooterFormContainer = styled.div`
     flex: 1 1 0;
-
+    @media only screen and (max-width: 900px){
+        flex: 2 2 0;
+    } 
     span {
         color: #b6f10e;
     }
@@ -81,16 +121,6 @@ const FooterFormContainer = styled.div`
         }
     }
 `;
-
-
-const FooterFormTextInput = styled.input`
-    border: none;
-    border-radius: 20px;
-    padding: 1rem 2rem;
-    outline: none;
-    width: 100%;
-`;
-
 
 const SocialLinks = styled.div`
     a {
@@ -115,9 +145,9 @@ const Footer = () => (
                     <FooterSiteDescription>
                         <h2>Robin Singh</h2>
                         <SocialLinks>
-                            <a href=""><FaFacebook /></a>
-                            <a href=""><FaInstagram /></a>
-                            <a href=""><FaLinkedin /></a>
+                            <a href="/"><FaFacebook /></a>
+                            <a href="/"><FaInstagram /></a>
+                            <a href="/"><FaLinkedin /></a>
                         </SocialLinks>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum rem illum ad? Voluptatem labore unde sunt perferendis vel iste, maiores iure, eligendi doloribus necessitatibus nesciunt?</p>
                     </FooterSiteDescription>  
@@ -131,11 +161,8 @@ const Footer = () => (
                         </ul>
                     </NavigationLinks>
                     <FooterFormContainer>
-                        <h2>Subscribe to my <br /><span>Newsletter</span></h2>
-                        <form>
-                            <FooterFormTextInput type="email" placeholder="Enter your email"/>
-                            <Button margin="2rem 0 0 0" hoverBgColor="#F52F57">Submit</Button>
-                        </form>
+                        <h2>Subscribe to my <span>Newsletter</span></h2>
+                        <NewsletterForm />
                     </FooterFormContainer>
                 </FooterFlex>
             

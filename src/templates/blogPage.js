@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaCalendar, FaClock, FaQuoteLeft} from 'react-icons/fa';
-import { graphql } from 'gatsby';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { FaCalendar, FaClock, FaTag} from 'react-icons/fa';
+import { graphql, Link } from 'gatsby';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import GlobalStyles from '../styles/GlobalStyles';
+import Head from '../components/Head';
 import Container from '../styles/container';
 import HeaderBlogPage from '../components/HeaderBlogPage';
 import Footer from '../components/Footer';
 import Pager from '../components/Pager';
 import ShareButton from '../components/ShareButton';
-
+import options from '../components/options';
 
 const Wrapper = styled.div`
     display: flex;
@@ -30,12 +30,44 @@ const MainContentHeader = styled.header`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 14rem 0 10rem 0;   
+    padding: 14rem 0 10rem 0;
+    
+    @media only screen and (max-width: 600px){
+        padding: 10rem 0;
+    }
+
+    @media only screen and (max-width: 350px){
+        padding: 5rem 0 0 0;
+        margin-bottom: 5rem;
+    }   
+
+    
 `;
 
 const Title = styled.h1`
     font-size: 7rem;
     margin: 0 0 2rem 0;
+
+    @media only screen and (max-width: 420px){
+        font-size: 5.5rem;
+    }
+`;
+
+const CategoryLink = styled(Link)`
+    align-items: center;
+    display: inline-flex;
+    color: var(--primaryTextColor);
+   
+    p {
+        font-family: 'Merriweather', serif;
+        font-size: 1.8rem;
+        line-height: 1.8;
+        margin: 0 0 0 1rem;
+    }
+
+    &:hover {
+        color:  #FE9920;
+    }
 `;
 
 const BlogMetadata = styled.div`
@@ -43,6 +75,22 @@ const BlogMetadata = styled.div`
 
     div + div {
         margin-left: 2rem;
+    }
+    
+    @media only screen and (max-width: 600px){
+        flex-wrap: wrap;    
+        
+        div:last-child {
+            margin: 0.5rem 0 0 0;
+        }
+    }
+
+    @media only screen and (max-width: 355px){
+        flex-direction: column;
+        align-items: flex-start;
+        div + div{
+            margin: 0;
+        }
     }
 `;
 
@@ -52,35 +100,53 @@ const BlogMetadataDiv = styled.div`
     justify-content: center;
 
     p {
+        font-family: 'Merriweather', serif;
+        font-size: 1.8rem;
+        line-height: 1.8;
         margin: 0 0 0 1rem;
     }
 `;
 
 const MainContentText = styled.div`
     margin-bottom: 12rem;
-    h1, h2 {
+    
+    .richtext-paragraph {
+        font-family: 'Merriweather', serif;
+        font-size: 1.8rem;
+        line-height: 1.8;
+    }
+
+    .heading{
         margin: 5rem 0 3rem 0;
     }
-    p {
-        margin-bottom: 3rem;
+
+    .h1{
+        font-size: 4rem;
+    }
+    
+    .h2{
+        font-size: 3rem;  
+    } 
+
+    .margin-medium-y {
+        margin: 2rem 0;
+    }
+
+    .richtext-ul li{
+        list-style-type: disc;
+    }
+
+    .richtext-ol li{
+        list-style-type: decimal;
+    }
+
+    li {
+        p {
+            margin: 1rem 0;
+        }
     }
 `;
 
-const MainContentImg = styled.img`
-    width:100%;
-`;
-
-const Blockquote = styled.blockquote`
-    background: var(--quote-bgColor);
-    border-left: 8px solid #323DA5;
-    margin: 0 0 4rem 0;
-    padding: 3rem 2rem;
-
-    span {
-        display: inline-block;
-        padding: 1rem;
-    }
-`;
 
 export const query = graphql`
     query( $slug : String! ){
@@ -89,6 +155,7 @@ export const query = graphql`
             slug,
             publishedDate (formatString: "MMMM Do, YYYY"),
             minuteRead,
+            category,
             body {
                 json
             }
@@ -98,31 +165,12 @@ export const query = graphql`
 
 const BlogPage = ({ data, pageContext }) => {
 
-    const options = {
-        renderNode: {
-            [BLOCKS.EMBEDDED_ASSET]: (node) => {
-                const alt = node.data.target.fields.title['en-US'];
-                const src = `${node.data.target.fields.file['en-US'].url}?fm=jpg&fl=progressive&fit=pad&bg=rgb:F6F7FB&w=1200`;
-                return <MainContentImg alt={alt} src={src} />
-            },
-            [BLOCKS.QUOTE]: (node) => (
-                <Blockquote>
-                    <FaQuoteLeft />
-                    <span>
-                        {
-                            node.content.map(edge => (
-                                edge.content[0].value
-                            ))
-                        }
-                    </span>
-                </Blockquote>
-            )
-        }
-    };
-
     return (
         <Wrapper>
-            <GlobalStyles blogTemplate />
+            <GlobalStyles />
+            <Head title={`${data.contentfulBlogPost.title} | Robin Singh`}>
+                <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+            </Head>
             <HeaderBlogPage/>
 
             <MainContent>
@@ -130,6 +178,12 @@ const BlogPage = ({ data, pageContext }) => {
                     <article>
                         <MainContentHeader>
                             <Title>{data.contentfulBlogPost.title}</Title>
+                            <div>
+                                <CategoryLink to={`/blog/category/${data.contentfulBlogPost.category.toLowerCase().trim().replace(/ /g, '-')}`}>
+                                    <FaTag />
+                                    <p>{ data.contentfulBlogPost.category }</p>
+                                </CategoryLink>
+                            </div>
                             <BlogMetadata>
                                 <BlogMetadataDiv>
                                     <FaCalendar />
@@ -140,15 +194,12 @@ const BlogPage = ({ data, pageContext }) => {
                                     <p>{`${data.contentfulBlogPost.minuteRead} min read`}</p>
                                 </BlogMetadataDiv>
                                 <ShareButton />
-                            </BlogMetadata>
-                        </MainContentHeader>   
+                            </BlogMetadata> 
+                        </MainContentHeader>
+
                         <MainContentText>
                             { documentToReactComponents(data.contentfulBlogPost.body.json, options) }
-                            <Blockquote>
-                                <FaQuoteLeft />
-                                <span>We are Groot. - Groot</span>
-                            </Blockquote>
-
+                        
                             <ShareButton active fontSizeRem={2.5} gap="2rem" margin="3rem 0"    />
                             <Pager pageContext={pageContext}></Pager>
                         </MainContentText>

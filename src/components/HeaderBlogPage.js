@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
 import Container from '../styles/container';
-import ToggleThemeButton from '../components/ToggleThemeButton';
+import ToggleThemeButton from './ToggleThemeButton';
+import HamburgerMenu from './HamburgerMenu';
 
 const Header = styled.header`
     background: var(--blog-headerBgColor);
@@ -12,9 +13,7 @@ const Header = styled.header`
 
 const HeaderContent = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    align-items: center;    
     nav {
         display: flex;
         
@@ -22,27 +21,46 @@ const HeaderContent = styled.div`
             margin-left: 2rem;
         }
     }
+
 `;
 
 const Heading = styled.h1`
     font-size: 3rem;
     flex: 1 1 0;
     margin: 0;
-    
+    padding: 3.5rem 0;
+
     a {
         color: #fff;
+    }
+
+    @media only screen and (max-width: 600px) {
+        padding: 2.5rem 1rem;
+        text-align: center;
+    }
+
+ 
+`;
+
+const HeaderNav = styled.nav`
+    @media only screen and (max-width: 600px){
+        display: none;
     }
 `;
 
 const HeaderLink = styled(Link)`
     display: block;
-    padding: 4rem 1rem;
     color: #fff;
     font-size: 2rem;
+    padding: 0 1rem;
     height: 100%;  
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s linear;
     &:hover {
-        color: #F52F57;
+        color: #FE9920;
+    }
+
+    @media only screen and (max-width: 600px){
+        display: none;
     }
 `;
 
@@ -50,13 +68,14 @@ const HeaderBlogPage = () => (
     <Header>
         <Container>
             <HeaderContent>
+                <HamburgerMenu />
                 <Heading><Link to="/">Robin Singh</Link></Heading>          
-                <nav>
+                <HeaderNav>
                     <HeaderLink to="/">Home</HeaderLink>
                     <HeaderLink to="/blog">Blog</HeaderLink>
                     <HeaderLink to="/contact">Contact</HeaderLink>
-                </nav>
-                <ToggleThemeButton/>
+                </HeaderNav>
+                <ToggleThemeButton />
             </HeaderContent>
         </Container>
     </Header>

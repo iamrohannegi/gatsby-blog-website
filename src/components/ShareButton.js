@@ -5,9 +5,14 @@ import { FaShareAlt, FaFacebook, FaTwitterSquare, FaLinkedin, FaEnvelope } from 
 const BlogShareContainer = styled.div`
     display: flex;
     margin: ${({ margin }) => margin || '0'};
+    @media only screen and (max-width: 600px){
+        flex-basis: 100%;
+        margin 1rem 0 0 0;
+    }
 `;
 
 const ShareBtn = styled.button`
+
     align-items: center;
     background: none; 
     border: none;
@@ -19,7 +24,7 @@ const ShareBtn = styled.button`
     margin-right: ${({ gap }) => gap || '1rem'};
 
     &.active {
-        color: #F52F57;
+        color: #FE9920;
 
         & + div {
             visibility: visible;
@@ -29,7 +34,7 @@ const ShareBtn = styled.button`
     }
 
     &:hover {
-        color: #FA75A7;
+        color: #FE9920;
     }
     
     &:focus {
@@ -38,7 +43,7 @@ const ShareBtn = styled.button`
 
     .shareText {
         font-family: 'Merriweather', serif;
-        font-size: ${({ fontSize }) => (fontSize || '2rem')};
+        font-size: ${({ fontSize }) => (fontSize || '1.8rem')};
         margin: 0 0 0 1rem;
     }
 `; 
@@ -46,7 +51,7 @@ const ShareBtn = styled.button`
 const ShareLinksContainer = styled.div`
     align-items: center;
     display: flex;
-    font-size: ${({ fontSize }) => (fontSize || '2.5rem')};
+    font-size: ${({ fontSize }) => (fontSize || '2rem')};
     transform: translateX(3rem);
     transition: all 0.2s ease-in-out;
     opacity: 0;

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { FaHome, FaFeatherAlt, FaGrinBeam, FaAddressCard, FaFacebook, FaLinkedin, FaInstagram} from 'react-icons/fa';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import ToggleThemeSlider from './ToggleThemeSlider';
 
 const SidebarContainer = styled.aside`
+    align-items: ${({ hamburger }) => hamburger && 'center'};
     background: var(--secondary-bgcolor);
     display: flex;
     color: var(--primaryTextColor);
@@ -15,11 +16,17 @@ const SidebarContainer = styled.aside`
     top: 0;
     left: 0;
     width: 300px;
+    width: ${({ hamburger }) => hamburger ? '100%' : '300px' };
 `;
 
 const SidebarHeading = styled.h1`
-    padding: 4rem 4rem 4rem 5rem;
+    padding: ${({ hamburger }) => hamburger ? '8rem 0 0rem 0' : '4rem 4rem 4rem 5rem'};
     margin-bottom: 5rem;
+
+    ${({ hamburger }) => hamburger && css`
+        text-align: center;
+        width: 100vw;
+    `};
 `
 const SidebarNav = styled.nav`
     flex-grow: 1;
@@ -55,9 +62,15 @@ const SidebarNavLink = styled(Link)`
         background: #eee;
         border-color: #eee;
     }
+
+    ${({ hamburger }) => hamburger && css`
+        border: none;
+        width: 100vw;
+    `};
 `;
 
 const SidebarFooter = styled.footer`
+    display: ${({ hamburger }) => hamburger && 'none'};
     padding-left: 5rem;
 `;
 
@@ -75,37 +88,36 @@ const SocialIcon = styled.a`
 
     &:hover {
         color: var(--${({ socialSiteName }) => socialSiteName});
-
     }
 `;
 
-const Sidebar = (props) => {
+const Sidebar = ({ hamburger }) => {
     return (
-        <SidebarContainer>
-            <SidebarHeading>Robin Singh</SidebarHeading>
+        <SidebarContainer hamburger={hamburger}>
+            <SidebarHeading hamburger={hamburger}>Robin Singh</SidebarHeading>
 
             <SidebarNav>
-                <SidebarNavList>
+                <SidebarNavList >
                     <li>
-                        <SidebarNavLink to="/" activeClassName="activeLink">
+                        <SidebarNavLink to="/" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
                             <span> Home </span>
                             <FaHome />
                         </SidebarNavLink>
                     </li>
                     <li>
-                        <SidebarNavLink to="/blog" activeClassName="activeLink" partiallyActive={true}>
+                        <SidebarNavLink to="/blog/" activeClassName="activeLink" partiallyActive={(!hamburger)} hamburger={hamburger ? 1: 0}> 
                             <span> Blog </span>
                             <FaFeatherAlt />
                         </SidebarNavLink>
                     </li>
                     <li>
-                        <SidebarNavLink to="/about" activeClassName="activeLink">
+                        <SidebarNavLink to="/about/" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
                             <span> About </span>
                             <FaGrinBeam />
                         </SidebarNavLink>
                     </li>
                     <li>
-                        <SidebarNavLink to="/contact" activeClassName="activeLink">
+                        <SidebarNavLink to="/contact/" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
                             <span> Contact </span>
                             <FaAddressCard />
                         </SidebarNavLink>
@@ -113,23 +125,26 @@ const Sidebar = (props) => {
                 </SidebarNavList>
             </SidebarNav>
             
-            <SidebarFooter>
-                <ToggleThemeSlider />
-                <SocialLinksContainer>
-                    <p>Social Links</p>
-                    <div>
-                        <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="facebook">                        
-                            <FaFacebook/>
-                        </SocialIcon>                        
-                        <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="linkedin">                        
-                            <FaLinkedin/>
-                        </SocialIcon>                        
-                        <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="instagram">                        
-                            <FaInstagram/>
-                        </SocialIcon>                        
-                    </div>
-                </SocialLinksContainer>
-            </SidebarFooter>
+            {
+                (!hamburger) && 
+                <SidebarFooter>
+                    <ToggleThemeSlider />
+                    <SocialLinksContainer>
+                        <p>Social Links</p>
+                        <div>
+                            <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="facebook" aria-label="Facebook">                        
+                                <FaFacebook/>
+                            </SocialIcon>                        
+                            <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="linkedin" aria-label="Linked in">                        
+                                <FaLinkedin/>
+                            </SocialIcon>                        
+                            <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="instagram" aria-label="Instagram">                        
+                                <FaInstagram/>
+                            </SocialIcon>                        
+                        </div>
+                    </SocialLinksContainer>
+                </SidebarFooter>  
+            }
         </SidebarContainer>
     );
 };

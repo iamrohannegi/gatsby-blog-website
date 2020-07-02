@@ -64,7 +64,7 @@ const ToggleThemeSlider = () => {
                                 checked={theme === 'dark'}
                                 id="checkbox"
                             />
-                            <SliderLabel for="checkbox">
+                            <SliderLabel htmlFor="checkbox">
                                 <FaSun />
                                 <FaMoon />
                                 <Ball />

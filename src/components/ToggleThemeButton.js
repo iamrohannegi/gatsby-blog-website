@@ -4,52 +4,64 @@ import styled from 'styled-components';
 
 import { FaSun, FaMoon } from 'react-icons/fa';
 
-
-
 const ToggleCheckboxContainer = styled.div`
-    position: relative;
-    width: 2.1rem;
-    height: 2.1rem;
     margin-left: 2rem;
-
-    svg {
-        position: absolute;
-        top: 0; 
-        left: 0;
-        height: 100%;
-        width: 100%;  
-        transition: 0.2s all ease-in-out;
+    @media only screen and (max-width: 600px) {
+        margin: 0;
     }
 `;
   
 const ToggleCheckbox= styled.input`
     position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
     opacity: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
+    
+    &:checked + div label:nth-of-type(2) {
+        display: none;
+    }
 
-    &:hover ~ svg {
-        color: #F52F57;
+    &:checked + div label:nth-of-type(1) {
+        display: flex;
+    }
+
+`;
+
+const LabelContainer = styled.div`
+    display: flex;
+`;
+
+const ThemeLabel = styled.label`
+    align-items: center;
+    border: 2px solid var(--secondaryTextColor);
+    border-radius: 5px;
+    cursor: pointer;
+    display: ${({ theme }) => (theme=="dark") ? 'flex' : 'none'};
+    justify-content: center;
+    opacity: 0.5;
+    font-size: 2rem;
+    padding: 0.5rem;
+
+    &:hover {
+        opacity: 1;
     }
 `;
 
-const ToggleThemeButton = ({ onlyIcon }) => {
+const ToggleThemeButton = () => {
     return (
         <ThemeToggler>
             {
                 ({ theme, toggleTheme }) => (
                     <ToggleCheckboxContainer>
                         <ToggleCheckbox
+                            id="theme"
                             type="checkbox" 
                             onChange={(e) => toggleTheme(e.target.checked ? 'dark' : 'light')}
                             checked={theme === 'dark'}
                         />
-                        { theme === 'dark' && <FaSun />}
-                        { theme === 'light' && <FaMoon />}
+                        <LabelContainer>
+                            <ThemeLabel htmlFor="theme" theme="light"><FaSun /></ThemeLabel>
+                            <ThemeLabel htmlFor="theme" theme="dark"><FaMoon /></ThemeLabel>
+                        </LabelContainer>
+                        
                     </ToggleCheckboxContainer>
                 )
             }
@@ -58,3 +70,8 @@ const ToggleThemeButton = ({ onlyIcon }) => {
 };
 
 export default ToggleThemeButton;
+
+/*
+    { theme === 'dark' && <ThemeLabel for="theme"><FaSun /></ThemeLabel>}
+                        { theme === 'light' && <ThemeLabel for="theme"><FaMoon /></ThemeLabel>}
+*/

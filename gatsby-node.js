@@ -5,6 +5,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions;
     const postListTemplate = path.resolve('./src/templates/blogPostList.js');
     const blogPageTemplate = path.resolve('./src/templates/blogPage.js');
+    const categoryBlogList = {};
 
     const res = await graphql(`
         {
@@ -12,24 +13,25 @@ module.exports.createPages = async ({ graphql, actions }) => {
             {
                 edges {
                     node {
-                        slug
+                        slug,
+                        category,
+                        title
                     }
                 }
             }
         }
     `);
     
-    // Blog List Page
-    paginate({
-        createPage,
-        items: res.data.allContentfulBlogPost.edges,
-        itemsPerPage: 3,
-        pathPrefix: '/blog',
-        component: postListTemplate
-    });
-
-    // Blog Page
     res.data.allContentfulBlogPost.edges.map((edge, idx, edges) => {
+        // Separating blogs based on category
+        const category = edge.node.category;
+        if(category in categoryBlogList) { 
+            categoryBlogList[category].push(edge.node);
+        } else { 
+            categoryBlogList[category] = [edge]; 
+        } 
+
+        //Blog Page
         let previousPagePath, previousPageTitle, nextPagePath, nextPageTitle;
         const prevPage = edges[idx + 1];
         if(prevPage) {
@@ -52,7 +54,38 @@ module.exports.createPages = async ({ graphql, actions }) => {
                 nextPagePath,
                 nextPageTitle
             }
-        })
+        });
     });
+
+    const categories = Object.keys(categoryBlogList);
+
+    // Blog List Page
+    paginate({
+        createPage,
+        items: res.data.allContentfulBlogPost.edges,
+        itemsPerPage: 3,
+        pathPrefix: '/blog',
+        component: postListTemplate,
+        context: {
+            categories
+        }
+    });
+
+
+    // Categories List Page
+    for(let category of categories){
+        const categorySlug = category.toLowerCase().trim().replace(/ /g, '-');
+        paginate({
+            createPage,
+            items: categoryBlogList[category],
+            itemsPerPage: 3,
+            pathPrefix: `/blog/category/${categorySlug}`,
+            component: postListTemplate,
+            context: {
+                category,
+                categories
+            }
+        });
+    };
 }
 
