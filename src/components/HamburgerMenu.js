@@ -22,30 +22,7 @@ const HamburgerButton = styled.div`
     }
 `;
 
-const HamburgerIcon = styled.div`
-    background: #fff;
-    position: relative;
-    top: 12px;
-    height: 5px;
-    width: 30px;
 
-    &:after, &:before {
-        background: inherit;
-        content: '';
-        left: 0px;
-        position: absolute;
-        height: 5px;
-        width: 30px;
-    }
-
-    &:before {
-        top: -10px;
-    }
-
-    &:after {
-        top: 10px;
-    }
-`;
 
 const Menu = styled.div`
     position: absolute;

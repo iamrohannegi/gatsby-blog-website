@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css }from 'styled-components';
+import styled from 'styled-components';
 import { FaShareAlt, FaFacebook, FaTwitterSquare, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const BlogShareContainer = styled.div`

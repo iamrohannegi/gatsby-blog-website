@@ -34,7 +34,7 @@ const ThemeLabel = styled.label`
     border: 2px solid var(--secondaryTextColor);
     border-radius: 5px;
     cursor: pointer;
-    display: ${({ theme }) => (theme=="dark") ? 'flex' : 'none'};
+    display: ${({ theme }) => (theme==="dark") ? 'flex' : 'none'};
     justify-content: center;
     opacity: 0.5;
     font-size: 2rem;

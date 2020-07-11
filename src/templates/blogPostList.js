@@ -24,11 +24,8 @@ export const query = graphql`
                 shortDescription,
                 category,
                 thumbnail {
-                  fluid(maxWidth: 300) {
-                    src,
-                    srcSet,
-                    srcWebp,
-                    srcSetWebp
+                  file {
+                    url
                   }
                 }
               }
@@ -141,9 +138,7 @@ const PostList = ({ data, pageContext }) => {
                   slug={edge.node.slug}
                   title={edge.node.title}
                   category={edge.node.category}
-                  thumbnailSrc={edge.node.thumbnail.fluid.src}
-                  thumbnailSrcSet={edge.node.thumbnail.fluid.srcSet}
-                  thumbnailSrcSetWebP={edge.node.thumbnail.fluid.srcSetWebp}
+                  thumbnailUrl={edge.node.thumbnail.file.url}
                   publishedDate={edge.node.publishedDate}
                   shortDescription={edge.node.shortDescription}
                 />

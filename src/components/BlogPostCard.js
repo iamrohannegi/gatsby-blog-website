@@ -27,10 +27,13 @@ const BlogPost = styled(Link)`
    }
 `;
 
-const ThumbnailImage = styled.picture`
+const ThumbnailImage = styled.img`
     border-radius: 15px;
     flex-basis: ${({ widerflex }) => widerflex ? '50%' : '30%'};
-
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
     @media (max-width: 1550px) {
         flex-basis: 50%;   
     }
@@ -108,9 +111,7 @@ const Description =  styled.p`
 
 const BlogPostCard = ({ 
     slug, 
-    thumbnailSrc,
-    thumbnailSrcSet,
-    thumbnailSrcSetWebP,
+    thumbnailUrl,
     publishedDate, 
     title, 
     category, 
@@ -119,10 +120,8 @@ const BlogPostCard = ({
 }) => {
     return (
         <BlogPost to={`/blog/${slug}`} key={slug}>
-            <ThumbnailImage widerflex={widerflex}>
-                <source srcSet={thumbnailSrcSetWebP} type="image/webp" alt="sop"/>
-                <img srcSet={thumbnailSrcSet} src={thumbnailSrc} alt="sup"/>
-            </ThumbnailImage>
+            <ThumbnailImage src={thumbnailUrl} widerflex={widerflex}/>
+
             <BlogPostContent widerflex={widerflex}>
                 <TitleHeading>{title}</TitleHeading>
                 <BlogMetadata>
