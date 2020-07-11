@@ -9,12 +9,6 @@ const MainContentImg = styled.img`
     width:100%;
 `;
 
-const StyledPara = styled.p`
-    font-family: 'Merriweather', serif;
-    font-size: 1.8rem;
-    line-height: 1.8;
-`;
-
 const Blockquote = styled.blockquote`
     background: var(--quote-bgColor);
     border-left: 8px solid #323DA5;
@@ -60,7 +54,7 @@ export default {
               slug={node.data.target.fields.slug['en-US']}
               title={node.data.target.fields.title['en-US']}
               category={node.data.target.fields.category['en-US']}
-              thumbnailUrl={node.data.target.fields.thumbnail['en-US'].fields.file['en-US'].url}
+              thumbnailSrc={node.data.target.fields.thumbnail['en-US'].fields.file['en-US'].url}
               publishedDate={moment.utc(node.data.target.fields.publishedDate['en-US']).format("MMMM Do, YYYY")}
               shortDescription={node.data.target.fields.shortDescription['en-US']}
             />

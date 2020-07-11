@@ -23,6 +23,10 @@ const Input = styled.input`
     &:focus {
         outline: none;
     }
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
 `;
 
 const SearchInput = connectSearchBox(({ refine, ...rest }) => (

@@ -10,7 +10,10 @@ const PagerWrapper = styled.div `
         else if(page === 'middle') return 'space-between';
         else return 'flex-start';
     }};
-    padding: 1rem;
+
+    @media (max-width: 475px) {
+        flex-wrap: wrap;
+    }
 `;
 
 const PageLinkButton = styled(Link) `
@@ -37,21 +40,47 @@ const PageLinkCard = styled(Link)`
     &:hover {
         color: #FE9920;
     }
+
+    @media (max-width: 475px) {
+        flex-basis: 100%;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+    }
 `;
+
 const PageLinkText = styled.span`
     font-family: 'Merriweather', serif;
     font-size: 2rem;
+    @media (max-width: 600px){
+        font-size: 1.8rem;
+    }
+
+    @media (max-width: 475px) {
+        padding: 0;
+        line-height: 1.2;
+    }
 `;
 const PageLinkNavText = styled(PageLinkText)`
     color: var(--secondaryTextColor);
     margin-bottom: 2rem;
+
+    @media (max-width: 475px) {
+        margin: 0 0 0.5rem 0;
+    }
 `;
 const PageLinkTitle = styled(PageLinkText)`
     padding: 0 1rem;
 `;
+
 const PageLinkTitleDiv = styled.div`
     display: flex;
     align-items: center;
+
+    @media (max-width: 475px) {
+        svg {
+            display: none;
+        }
+    }
 `;
 
 const Pager = ({ pageContext }) => {

@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { FaTag } from 'react-icons/fa';
 
-const BlogPost = styled.div`
+const BlogPost = styled(Link)`
     background-color: var(--secondary-bgcolor);
     border-radius: 20px;
     cursor: pointer;
@@ -15,22 +15,44 @@ const BlogPost = styled.div`
 
     &:hover {
         transform: translateY(-0.4rem);
-        
         box-shadow: 0px 7px 2px 0px var(--postCard-hoverColor);
     }
+
+   @media (max-width: 700px) {
+       flex-direction: column;
+   }
+
+   @media (max-width: 450px) {
+       padding: 2rem 1.3rem 1rem 1.3rem;
+   }
 `;
 
-const ThumbnailContainer = styled.div`
+const ThumbnailImage = styled.picture`
     border-radius: 15px;
-    flex-basis: ${({ widerflex }) => widerflex ? '50%' : '25%'};
-    height: 200px;
-    overflow: hidden;
+    flex-basis: ${({ widerflex }) => widerflex ? '50%' : '30%'};
+
+    @media (max-width: 1550px) {
+        flex-basis: 50%;   
+    }
+
+    @media (max-width: 700px) {
+        max-height: 250px;
+        height: 250px;
+    }
+
 `;
 
-const ThumbnailImage = styled.img`
-    height: 100%;
-    object-fit: cover;  
-    width: 100%;
+const BlogPostContent = styled.div`
+    flex-basis: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+    margin: 1.5rem 0;
+
+    @media (max-width: 700px) {
+        margin: 2.5rem 0 2rem 0;
+        padding: 0 1rem;
+    }
 `;
 
 const BlogMetadata = styled.div`
@@ -41,6 +63,11 @@ const BlogMetadata = styled.div`
     margin: 0 0 2rem 0;
     p {
         margin: 0;
+    }
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        align-items: flex-start;
     }
 `;
 
@@ -53,14 +80,10 @@ const BlogCategory = styled.div`
     p {
         margin-left: 0.5rem;
     }
-`;
 
-const BlogPostContent = styled.div`
-    flex-basis:  ${({ widerflex }) => widerflex ? '50%' : '75%'};
-    display: flex;
-    flex-direction: column;
-    padding: 0 3rem;
-    margin: 1.5rem 0;
+    @media (max-width: 400px) {
+        margin: 0.5rem 0 0 0;
+    }
 `;
 
 const TitleHeading = styled.h2`
@@ -72,29 +95,46 @@ const TitleHeading = styled.h2`
 const Description =  styled.p`
     line-height: 1.5; 
     margin: 0;
-    width: ${({ widerflex }) => widerflex ? '100%' : '70%'};
+    width: ${({ widerflex }) => widerflex ? '95%' : '70%'};
+
+    @media (max-width: 1550px) {
+        width: 95%;   
+    }
+
+    @media (max-width: 450px) {
+        width: 100%;
+    }
 `;
 
-const BlogPostCard = ({ slug, thumbnailUrl, publishedDate, title, category, shortDescription, widerflex}) => {
+const BlogPostCard = ({ 
+    slug, 
+    thumbnailSrc,
+    thumbnailSrcSet,
+    thumbnailSrcSetWebP,
+    publishedDate, 
+    title, 
+    category, 
+    shortDescription, 
+    widerflex
+}) => {
     return (
-        <Link to={`/blog/${slug}`} key={slug}>
-            <BlogPost>
-                <ThumbnailContainer widerflex={widerflex}>
-                    <ThumbnailImage src={thumbnailUrl}/>
-                </ThumbnailContainer>
-                <BlogPostContent widerflex={widerflex}>
-                    <TitleHeading>{title}</TitleHeading>
-                    <BlogMetadata>
-                        <p>{publishedDate}</p>
-                        <BlogCategory>
-                            <FaTag />
-                            <p>{ category }</p>
-                        </BlogCategory>
-                    </BlogMetadata>
-                    <Description widerflex={widerflex}>{shortDescription}</Description>
-                </BlogPostContent>
-            </BlogPost>
-        </Link>
+        <BlogPost to={`/blog/${slug}`} key={slug}>
+            <ThumbnailImage widerflex={widerflex}>
+                <source srcSet={thumbnailSrcSetWebP} type="image/webp" alt="sop"/>
+                <img srcSet={thumbnailSrcSet} src={thumbnailSrc} alt="sup"/>
+            </ThumbnailImage>
+            <BlogPostContent widerflex={widerflex}>
+                <TitleHeading>{title}</TitleHeading>
+                <BlogMetadata>
+                    <p>{publishedDate}</p>
+                    <BlogCategory>
+                        <FaTag />
+                        <p>{ category }</p>
+                    </BlogCategory>
+                </BlogMetadata>
+                <Description widerflex={widerflex}>{shortDescription}</Description>
+            </BlogPostContent>
+        </BlogPost>
     );
 };
 

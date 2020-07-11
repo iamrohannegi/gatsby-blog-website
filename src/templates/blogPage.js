@@ -24,6 +24,11 @@ const Wrapper = styled.div`
 const MainContent = styled.main`
     flex-grow: 1;
     color: var(--primaryTextColor);  
+    margin-bottom: 8rem;
+
+    @media (max-width: 475px) {
+        margin-bottom: 3rem;
+    }
 `;
 
 const MainContentHeader = styled.header`
@@ -40,8 +45,6 @@ const MainContentHeader = styled.header`
         padding: 5rem 0 0 0;
         margin-bottom: 5rem;
     }   
-
-    
 `;
 
 const Title = styled.h1`
@@ -107,8 +110,8 @@ const BlogMetadataDiv = styled.div`
     }
 `;
 
-const MainContentText = styled.div`
-    margin-bottom: 12rem;
+const MainContentText = styled.section`
+    margin-bottom: 8rem;
     
     .richtext-paragraph {
         font-family: 'Merriweather', serif;
@@ -199,10 +202,9 @@ const BlogPage = ({ data, pageContext }) => {
 
                         <MainContentText>
                             { documentToReactComponents(data.contentfulBlogPost.body.json, options) }
-                        
-                            <ShareButton active fontSizeRem={2.5} gap="2rem" margin="3rem 0"    />
-                            <Pager pageContext={pageContext}></Pager>
                         </MainContentText>
+                        <ShareButton active fontSizeRem={2.5} gap="2rem" margin="3rem 0"    />
+                        <Pager pageContext={pageContext}></Pager>
                     </article>
                 </Container>
             </MainContent>

@@ -1,18 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css }from 'styled-components';
 import { FaShareAlt, FaFacebook, FaTwitterSquare, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const BlogShareContainer = styled.div`
     display: flex;
     margin: ${({ margin }) => margin || '0'};
+
     @media only screen and (max-width: 600px){
         flex-basis: 100%;
-        margin 1rem 0 0 0;
+        margin ${({ active }) => (!active) && "1rem 0 0 0"};
     }
 `;
 
 const ShareBtn = styled.button`
-
     align-items: center;
     background: none; 
     border: none;
@@ -23,6 +23,8 @@ const ShareBtn = styled.button`
     padding: 0;
     margin-right: ${({ gap }) => gap || '1rem'};
 
+
+
     &.active {
         color: #FE9920;
 
@@ -30,7 +32,7 @@ const ShareBtn = styled.button`
             visibility: visible;
             opacity: 1;
             transform: translateX(0);
-        }
+        }    
     }
 
     &:hover {
@@ -77,7 +79,7 @@ const ShareLink = styled.a.attrs(() => ({
     
 
 const ShareButton = ({ active, fontSizeRem, gap, margin }) => (
-    <BlogShareContainer margin={margin}>
+    <BlogShareContainer active={active} margin={margin}>
         {   
             active ? 
             <ShareBtn className="active" fontSize={fontSizeRem && fontSizeRem+"rem"} gap={gap}> 

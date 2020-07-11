@@ -9,6 +9,13 @@ import PoweredBy from './PoweredByAlgolia';
 
 const SearchBarWrapper = styled.div`
     position: relative;
+
+    @media (max-width: 700px) {
+        margin-top: 1.5rem;
+        padding: 0 1.4rem;
+        order: 1;
+        flex-basis: 100%;
+    }
 `;
 
 const SearchResultHeader = styled.p`
@@ -16,6 +23,7 @@ const SearchResultHeader = styled.p`
     padding: 2rem 1.5rem 1rem 1.5rem;
     color: var(--secondaryTextColor);
 `;
+
 const HitsWrapper = styled.div`
     background: var(--secondary-bgcolor);
     border-radius: 15px;
@@ -37,6 +45,12 @@ const HitsWrapper = styled.div`
         left: 20%;
         height: 0;
         width: 0;
+    }
+
+    
+    @media (max-width: 700px) {
+        width: 100%;
+        left: 0;
     }
 `;
 
@@ -74,7 +88,7 @@ const SearchBar = () => {
     return (
         <SearchBarWrapper>
             <InstantSearch searchClient={searchClient} indexName="Blog" onSearchStateChange={({ query }) => setQuery(query)}>
-                <SearchInput onFocus={() => setFocus(true)} onBlur={() => setTimeout(() => {setFocus(false)}, 150)}/>
+                <SearchInput onFocus={() => setFocus(true)} onBlur={() => setTimeout(() => {setFocus(false)}, 100)}/>
                 <HitsWrapper show={query.length > 0 && !(query.trim() === '') && focus}>
                     <Stats />
                     <Results>

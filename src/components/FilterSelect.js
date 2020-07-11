@@ -9,16 +9,22 @@ const FilterDropdownButton = styled.button`
     border: none;    
     border-radius: 10px;
     cursor: pointer;
-    color: var(--secondaryTextColor);
+    color:  var(--secondaryTextColor);
     display: flex;
     justify-content: center;
     padding: 0 4rem;
-    transition: all 0.1s ease-in-out;
+    transition: all 150ms ease-in-out;
 
     &:focus {
+        background: #5B63B3;
+        color: #fff;
         outline: none;
     }
-    
+
+    &:focus + div {
+        visibility: visible;
+    }
+
     &:hover {
         background: #5B63B3;
         color: #fff;
@@ -26,6 +32,10 @@ const FilterDropdownButton = styled.button`
 
    svg {
        margin-left: 1rem;
+   }
+
+   @media (max-width: 388px) {
+        width: 100%;
    }
 `;
 
@@ -53,10 +63,11 @@ const FilterDropdownDiv = styled.div`
     background-color: var(--secondary-bgcolor);   
     border-radius: 10px;
     box-shadow: 1px 5px 6px 3px var(--search-shadowColor);
-    display: none;
     position: absolute;
     top: 123%;
+    transition: visibility 150ms ease-in-out;
     left: 0;
+    visibility: hidden;
     width: 100%;
     z-index: 1;
 
@@ -80,35 +91,31 @@ const FilterDropdownDiv = styled.div`
 const FilterDiv = styled.div`
     position: relative;
     margin: 0 1.4rem 0 5rem;
-    &.show-dropdown ${FilterDropdownDiv} {
-        display: block;
-    }
 
-    &.show-dropdown ${FilterDropdownButton} {
-        background: #5B63B3;
-        color: #fff;
+    @media (max-width: 388px) {
+        margin: 1.5rem 0 0 0;
+        order: 2;
+        width: 100%;
     }
 `;
 
 
-const FilterSelect = ({ categories }) => (
-    <FilterDiv>
-        <FilterDropdownButton onClick={
-            (e) => {
-                e.currentTarget.parentNode.classList.toggle('show-dropdown');
-            }
-        }>
-            <p>Filter posts</p>
-            <FaAngleDown />
-        </FilterDropdownButton>
-        <FilterDropdownDiv>
-            {
-                categories.map(category => (
-                    <FilterLink to={`/blog/category/${category.toLowerCase().trim().replace(/ /g, '-')}`} key={category}>{ category.trim() }</FilterLink>
-                ))
-            }    
-        </FilterDropdownDiv>
-    </FilterDiv>
-);
+const FilterSelect = ({ categories }) => {
+    return (
+        <FilterDiv>
+            <FilterDropdownButton>
+                <p>Filter posts</p>
+                <FaAngleDown />
+            </FilterDropdownButton>
+            <FilterDropdownDiv>
+                {
+                    categories.map(category => (
+                        <FilterLink to={`/blog/category/${category.toLowerCase().trim().replace(/ /g, '-')}`} key={category}>{ category.trim() }</FilterLink>
+                    ))
+                }    
+            </FilterDropdownDiv>
+        </FilterDiv>
+    );
+};
 
 export default FilterSelect;

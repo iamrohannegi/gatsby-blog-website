@@ -26,12 +26,17 @@ const SearchResultMetadata = styled.div`
   justify-content: space-between;
   font-size: 1.4rem;
   padding: 1rem 0 0 0;
+  
+  @media (max-width: 350px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 `;
 
 const SearchResultTag = styled.div`
   display: flex;
   align-items: center;
-
+  margin-top: 0.5rem;
   span {
     margin-left: 0.4rem;
   }

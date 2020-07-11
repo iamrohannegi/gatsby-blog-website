@@ -17,11 +17,14 @@ const queries = [
   }
 ];
 
+
 module.exports = {
   siteMetadata: {
     title: 'Robin Singh'
   },
   plugins: [
+    'gatsby-plugin-sharp',
+    
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
@@ -54,7 +57,6 @@ module.exports = {
       }
     },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-dark-mode'
   ],

@@ -7,7 +7,6 @@ import BlogPostCard from '../components/BlogPostCard';
 import Pager from '../components/Pager';
 import SearchBar from '../components/SearchBar';
 import FilterSelect from '../components/FilterSelect';
-import Button from '../components/Button';
 
 export const query = graphql`
     query($skip: Int!, $limit: Int!, $category: String) {
@@ -25,8 +24,11 @@ export const query = graphql`
                 shortDescription,
                 category,
                 thumbnail {
-                  file {
-                    url
+                  fluid(maxWidth: 300) {
+                    src,
+                    srcSet,
+                    srcWebp,
+                    srcSetWebp
                   }
                 }
               }
@@ -44,19 +46,28 @@ const Header = styled.header`
       margin: 0 0 0 1.4rem;
       flex: 1 1 0;
     }
+    
+    @media (max-width: 700px) {
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 388px) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
 `;  
+
 
 const CategoryHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 2rem;
-    margin: 9.3rem 0 4rem 1.4rem;
+    margin: 9.3rem 0 4rem 0;
 
     h2 {    
       color: var(--secondaryTextColor); 
       font-size: 2.5rem; 
-
       span {
         color: var(--primaryTextColor); 
         font-size: 3rem;
@@ -66,6 +77,18 @@ const CategoryHeader = styled.header`
 
     @media only screen and (max-width: 1100px){
       margin-top: 2rem;
+    }
+
+    @media (max-width: 650px) {
+      align-items: flex-start;
+      flex-direction: column;
+      h2 {
+        margin: 0 0 0 1.4rem;
+      }
+      span {
+        display: block;
+        padding-right: 1rem;
+      }
     }
 `;
 
@@ -78,13 +101,20 @@ const RemoveFilter = styled(Link)`
   font-size: 1.6rem;
   padding: 1rem 3rem;
   margin: 0 1.4rem 0 0;
+  text-align: center;
   transition: all 0.2s ease;
   &:hover {
       transform: translateY(-0.4rem);
       color: #fff;
       background: #5A62B3;
   }
+
+  @media (max-width: 650px) {
+    margin: 1rem 0 0 0;
+    width: 100%;
+  }
 `;
+
 const PostList = ({ data, pageContext }) => {
     const posts = data.allContentfulBlogPost.edges;
     const { categories, category } = pageContext; 
@@ -95,6 +125,7 @@ const PostList = ({ data, pageContext }) => {
             <SearchBar />
             <FilterSelect categories={categories} />     
           </Header>
+
           <section>
             { category && 
               <CategoryHeader>
@@ -110,7 +141,9 @@ const PostList = ({ data, pageContext }) => {
                   slug={edge.node.slug}
                   title={edge.node.title}
                   category={edge.node.category}
-                  thumbnailUrl={edge.node.thumbnail.file.url}
+                  thumbnailSrc={edge.node.thumbnail.fluid.src}
+                  thumbnailSrcSet={edge.node.thumbnail.fluid.srcSet}
+                  thumbnailSrcSetWebP={edge.node.thumbnail.fluid.srcSetWebp}
                   publishedDate={edge.node.publishedDate}
                   shortDescription={edge.node.shortDescription}
                 />
