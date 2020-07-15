@@ -105,19 +105,19 @@ const Sidebar = ({ hamburger }) => {
                         </SidebarNavLink>
                     </li>
                     <li>
-                        <SidebarNavLink to="/blog/" activeClassName="activeLink" partiallyActive={(!hamburger)} hamburger={hamburger ? 1: 0}> 
+                        <SidebarNavLink to="/blog" activeClassName="activeLink" partiallyActive={(!hamburger)} hamburger={hamburger ? 1: 0}> 
                             <span> Blog </span>
                             <FaFeatherAlt />
                         </SidebarNavLink>
                     </li>
                     <li>
-                        <SidebarNavLink to="/about/" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
+                        <SidebarNavLink to="/about" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
                             <span> About </span>
                             <FaGrinBeam />
                         </SidebarNavLink>
                     </li>
                     <li>
-                        <SidebarNavLink to="/contact/" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
+                        <SidebarNavLink to="/contact" activeClassName="activeLink" hamburger={hamburger ? 1: 0}>
                             <span> Contact </span>
                             <FaAddressCard />
                         </SidebarNavLink>

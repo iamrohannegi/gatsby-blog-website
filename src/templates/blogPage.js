@@ -11,7 +11,7 @@ import HeaderBlogPage from '../components/HeaderBlogPage';
 import Footer from '../components/Footer';
 import Pager from '../components/Pager';
 import ShareButton from '../components/ShareButton';
-import options from '../components/options';
+import options from '../contentful/options';
 
 const Wrapper = styled.div`
     display: flex;
@@ -121,6 +121,7 @@ const MainContentText = styled.section`
 
     .heading{
         margin: 5rem 0 3rem 0;
+        word-break: break-all;
     }
 
     .h1{
@@ -196,14 +197,14 @@ const BlogPage = ({ data, pageContext }) => {
                                     <FaClock />
                                     <p>{`${data.contentfulBlogPost.minuteRead} min read`}</p>
                                 </BlogMetadataDiv>
-                                <ShareButton />
+                                <ShareButton slug={data.contentfulBlogPost.slug}/>
                             </BlogMetadata> 
                         </MainContentHeader>
 
                         <MainContentText>
                             { documentToReactComponents(data.contentfulBlogPost.body.json, options) }
                         </MainContentText>
-                        <ShareButton active fontSizeRem={2.5} gap="2rem" margin="3rem 0"    />
+                        <ShareButton active slug={data.contentfulBlogPost.slug} fontSizeRem={2.5} gap="2rem" margin="3rem 0" />
                         <Pager pageContext={pageContext}></Pager>
                     </article>
                 </Container>

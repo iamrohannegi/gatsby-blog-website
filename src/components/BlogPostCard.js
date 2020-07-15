@@ -27,22 +27,33 @@ const BlogPost = styled(Link)`
    }
 `;
 
-const ThumbnailImage = styled.img`
+const ThumbnailImage = styled.picture`
     border-radius: 15px;
     flex-basis: ${({ widerflex }) => widerflex ? '50%' : '30%'};
-    height: 200px;
-    object-fit: cover;
     overflow: hidden;
-    width: 100%;
+    
+    img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
     @media (max-width: 1550px) {
         flex-basis: 50%;   
     }
 
     @media (max-width: 700px) {
-        max-height: 250px;
-        height: 250px;
+        img {
+            height: 250px;
+        }
     }
 
+    @media (max-width: 400px) {
+        img {
+            max-height: 250px;
+            height: auto;
+        }
+    }
 `;
 
 const BlogPostContent = styled.div`
@@ -120,8 +131,12 @@ const BlogPostCard = ({
 }) => {
     return (
         <BlogPost to={`/blog/${slug}`} key={slug}>
-            <ThumbnailImage src={thumbnailUrl} widerflex={widerflex}/>
-
+            <ThumbnailImage widerflex={widerflex}>
+                <source media="(min-width: 450px)" srcSet={`${thumbnailUrl}?fm=webp&w=800&q=90`} />
+                <source srcSet={`${thumbnailUrl}?fm=webp&w=800&q=90`} />
+                <img src={thumbnailUrl}/>
+            </ThumbnailImage>
+                
             <BlogPostContent widerflex={widerflex}>
                 <TitleHeading>{title}</TitleHeading>
                 <BlogMetadata>

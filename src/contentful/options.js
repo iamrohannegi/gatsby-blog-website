@@ -5,8 +5,10 @@ import BlogPostCard from '../components/BlogPostCard';
 import styled from 'styled-components';
 import moment from 'moment';
 
-const MainContentImg = styled.img`
-    width:100%;
+const MainContentImg = styled.picture`
+    img {
+        width: 100%;
+    }
 `;
 
 const Blockquote = styled.blockquote`
@@ -46,8 +48,15 @@ export default {
     renderNode: {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
             const alt = node.data.target.fields.title['en-US'];
-            const src = `${node.data.target.fields.file['en-US'].url}?fm=jpg&fl=progressive&fit=pad&bg=rgb:F6F7FB&w=1200`;
-            return <MainContentImg alt={alt} src={src} />
+            const src = `${node.data.target.fields.file['en-US'].url}?fm=jpg&fl=progressive&fit=pad&w=1200&q=70`;
+            return (
+                <MainContentImg>
+                    <source media="(min-width: 800px)" srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=1200&h=500&fit=fill&q=80`} type="image/webp"  />
+                    <source media="(min-width: 450px)" srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=800&h=400&fit=fill&q=80`} type="image/webp"  />
+                    <source srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=400&q=80`} />
+                    <img alt={alt} src={src} />
+                </MainContentImg>
+            )
         },
         [BLOCKS.EMBEDDED_ENTRY]: (node) => (
             <BlogPostCard widerflex

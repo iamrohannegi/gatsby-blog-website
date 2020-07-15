@@ -78,7 +78,7 @@ const ShareLink = styled.a.attrs(() => ({
 `;
     
 
-const ShareButton = ({ active, fontSizeRem, gap, margin }) => (
+const ShareButton = ({ slug, active, fontSizeRem, gap, margin }) => (
     <BlogShareContainer active={active} margin={margin}>
         {   
             active ? 
@@ -95,7 +95,7 @@ const ShareButton = ({ active, fontSizeRem, gap, margin }) => (
             </ShareBtn>
         }
         <ShareLinksContainer fontSize={fontSizeRem && (fontSizeRem+0.5)+"rem"} gap={gap}>
-            <ShareLink href="" siteName="facebook"><FaFacebook /></ShareLink>
+            <ShareLink href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//jolly-mccarthy-4981ec.netlify.app/blog/${slug}`} siteName="facebook"><FaFacebook /></ShareLink>
             <ShareLink href="" siteName="twitter"><FaTwitterSquare /></ShareLink>
             <ShareLink href="" siteName="linkedin"><FaLinkedin /></ShareLink>
             <ShareLink href="" siteName="mail"><FaEnvelope /></ShareLink>
