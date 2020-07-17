@@ -25,6 +25,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_TRACKING_ID,
+        head: true,
+        anonymize: true
+      },
+    },
+    {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
           endpoint: process.env.MAILCHIMP_ENDPOINT,

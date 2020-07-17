@@ -108,9 +108,6 @@ const FooterFormContainer = styled.div`
     span {
         color: #b6f10e;
     }
-    p {
-        padding-left: 1rem;
-    }
 
     form {
         padding: 0.2rem 0;

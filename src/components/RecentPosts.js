@@ -31,6 +31,7 @@ const RecentPosts = () => {
                 shortDescription,
                 category,
                 thumbnail {
+                  title,
                   file {
                     url
                   }
@@ -51,6 +52,7 @@ const RecentPosts = () => {
                     slug={edge.node.slug}
                     title={edge.node.title}
                     category={edge.node.category}
+                    thumbnailTitle={edge.node.thumbnail.title}
                     thumbnailUrl={edge.node.thumbnail.file.url}
                     publishedDate={edge.node.publishedDate}
                     shortDescription={edge.node.shortDescription}

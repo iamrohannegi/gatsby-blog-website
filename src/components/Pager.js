@@ -70,7 +70,13 @@ const PageLinkNavText = styled(PageLinkText)`
 `;
 const PageLinkTitle = styled(PageLinkText)`
     padding: 0 1rem;
-    word-break: break-word;s
+    word-break: break-word;
+    line-height: 1.5;
+    max-width: 500px;
+
+    @media (max-width: 700px) {
+        max-width: 300px;
+    }
 `;
 
 const PageLinkTitleDiv = styled.div`
