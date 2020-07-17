@@ -59,11 +59,11 @@ const Container = styled.div`
 `;
 
 
-const Layout = ({ title, children}) => {
+const Layout = ({ title, description, children}) => {
     return (
         <div>
             <GlobalStyles />
-            <Head title={title}/>
+            <Head title={title} description={description}/>
             <MediaQuery query="(max-width: 1100px)">
                 <HeaderNav/>
             </MediaQuery>

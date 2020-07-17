@@ -20,7 +20,8 @@ const queries = [
 
 module.exports = {
   siteMetadata: {
-    title: 'Robin Singh'
+    title: 'Robin Singh',
+    siteUrl: 'https://jolly-mccarthy-4981ec.netlify.app/'
   },
   plugins: [
     {
@@ -48,14 +49,24 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-google-tagmanager',
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        id: 'GTM-T8T9QWK',
-        includeInDevelopment: false
-      }
+        fonts: [
+          {
+            family: `Roboto`,
+            variants: [`400`, `700`]
+          },
+          {
+            family: `Merriweather`,
+            variants: [`400`, `700`]
+          },
+        ],
+      },
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-dark-mode'
+    'gatsby-plugin-dark-mode',
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-robots-txt'
   ],
 }

@@ -32,7 +32,7 @@ const NewsletterForm = () => {
             }}>
                 <Input type="email" name="email" autoComplete="email" placeholder="Enter your email" 
                     value={email}
-                    onChange={(e) => {setEmail(e.target.value)}}/>
+                    onChange={(e) => {setEmail(e.target.value)}} aria-label="Enter your email for newsletter"/>
                 <Button margin="2rem 0 0 0" hoverBgColor="#F52F57">Submit</Button>
             </form>      
         )

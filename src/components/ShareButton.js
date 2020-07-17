@@ -108,10 +108,10 @@ const ShareButton = ({ slug, title, active, fontSizeRem, gap, margin }) => {
                 </ShareBtn>
             }
             <ShareLinksContainer fontSize={fontSizeRem && (fontSizeRem+0.5)+"rem"} gap={gap}>
-                <ShareLink href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//jolly-mccarthy-4981ec.netlify.app/blog/${slug}`} siteName="facebook"><FaFacebook /></ShareLink>
-                <ShareLink href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fjolly-mccarthy-4981ec.netlify.app%2Fblog%2F${slug}&text=Read%20more%20about%20${title}`} siteName="twitter"><FaTwitterSquare /></ShareLink>
-                <ShareLink href={`http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjolly-mccarthy-4981ec.netlify.app%2Fblog%2F${slug}&title=Read%20more%20about%20${title}`}siteName="linkedin"><FaLinkedin /></ShareLink>
-                <ShareLink href={`http://www.tumblr.com/share?v=3&u=https%3A%2F%2Fjolly-mccarthy-4981ec.netlify.app%2Fblog%2F${slug}&t=Read%20more%20about%20${title}`} siteName="mail"><FaPinterest /></ShareLink>
+                <ShareLink href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//jolly-mccarthy-4981ec.netlify.app/blog/${slug}`} aria-label="Share to Facebook"><FaFacebook /></ShareLink>
+                <ShareLink href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fjolly-mccarthy-4981ec.netlify.app%2Fblog%2F${slug}&text=Read%20more%20about%20${title}`} aria-label="Share to Twitter"><FaTwitterSquare /></ShareLink>
+                <ShareLink href={`http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fjolly-mccarthy-4981ec.netlify.app%2Fblog%2F${slug}&title=Read%20more%20about%20${title}`} aria-label="Share to Linked in"><FaLinkedin /></ShareLink>
+                <ShareLink href={`http://www.tumblr.com/share?v=3&u=https%3A%2F%2Fjolly-mccarthy-4981ec.netlify.app%2Fblog%2F${slug}&t=Read%20more%20about%20${title}`} aria-label="Share to Pinterest"><FaPinterest /></ShareLink>
             </ShareLinksContainer>
         </BlogShareContainer>
     );

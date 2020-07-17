@@ -117,6 +117,7 @@ const Description =  styled.p`
 
 const BlogPostCard = ({ 
     slug, 
+    thumbnailTitle,
     thumbnailUrl,
     publishedDate, 
     title, 
@@ -129,7 +130,7 @@ const BlogPostCard = ({
             <ThumbnailImage widerflex={widerflex}>
                 <source media="(min-width: 480px)" srcSet={`${thumbnailUrl}?fm=webp&w=550&q=90`} />
                 <source srcSet={`${thumbnailUrl}?fm=webp&w=350&q=90`} />
-                <img src={thumbnailUrl}/>
+                <img alt={thumbnailTitle} src={thumbnailUrl}/>
             </ThumbnailImage>
                 
             <BlogPostContent widerflex={widerflex}>

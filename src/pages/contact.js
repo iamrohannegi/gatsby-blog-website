@@ -25,7 +25,7 @@ const NewsLetterContainer = styled.div`
 
 const ContactPage = () => {
   return (
-    <Layout title="Contact | Robin Singh">
+    <Layout title="Contact | Robin Singh" description="Contact Page">
         <h1>Contact</h1>
 
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum quia modi, beatae obcaecati recusandae molestiae.</p>

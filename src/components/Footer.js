@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 import Container from '../styles/container';
-import NewsletterForm from '../components/NewsletterForm';
+import SocialLinks from './SocialLinks';
+import NewsletterForm from './NewsletterForm';
 
 const Svg = styled.svg`    
     display: block;
@@ -122,19 +122,7 @@ const FooterFormContainer = styled.div`
     }
 `;
 
-const SocialLinks = styled.div`
-    a {
-        color: #fff;
-        font-size: 3rem;
 
-        &:hover {
-            color: #b6f10e;
-        }
-    }
-    a + a {
-        margin-left: 2rem;
-    }
-`;
 
 const Footer = () => (
     <footer>
@@ -144,11 +132,7 @@ const Footer = () => (
                 <FooterFlex>
                     <FooterSiteDescription>
                         <h2>Robin Singh</h2>
-                        <SocialLinks>
-                            <a href="/"><FaFacebook /></a>
-                            <a href="/"><FaInstagram /></a>
-                            <a href="/"><FaLinkedin /></a>
-                        </SocialLinks>
+                        <SocialLinks color="#fff" />
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum rem illum ad? Voluptatem labore unde sunt perferendis vel iste, maiores iure, eligendi doloribus necessitatibus nesciunt?</p>
                     </FooterSiteDescription>  
                     <NavigationLinks>

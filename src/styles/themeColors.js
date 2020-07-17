@@ -2,14 +2,6 @@ import { css } from 'styled-components';
 
 const themeColors = css`
 
-    :root {
-        --facebook: #3b5998;
-        --linkedin: #0e76a8;
-        --instagram: #bc2a8d;
-        --twitter: #00acee;
-        --mail: #D44638;
-    }
-
     .dark {
         --primary-bgcolor: #21272f;
         --secondary-bgcolor: #2A313B;

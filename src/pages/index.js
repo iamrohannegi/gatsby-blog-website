@@ -5,7 +5,7 @@ import RecentPosts from '../components/RecentPosts';
 
 const IndexPage = () => {
   return (
-    <Layout title="Home | Robin Singh">
+    <Layout title="Home | Robin Singh" description="Home Page">
       <h1> Home </h1>
       <p>This is my front page people!.</p>
       <div style={{"height": "800px"}}>

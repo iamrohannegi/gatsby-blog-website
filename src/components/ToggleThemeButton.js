@@ -53,9 +53,11 @@ const ToggleThemeButton = () => {
                     <ToggleCheckboxContainer>
                         <ToggleCheckbox
                             id="theme"
+                            name="theme"
                             type="checkbox" 
                             onChange={(e) => toggleTheme(e.target.checked ? 'dark' : 'light')}
                             checked={theme === 'dark'}
+                            aria-label="Theme checkbox"
                         />
                         <LabelContainer>
                             <ThemeLabel htmlFor="theme" theme="light"><FaSun /></ThemeLabel>

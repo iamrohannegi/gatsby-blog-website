@@ -62,6 +62,7 @@ export default {
               slug={node.data.target.fields.slug['en-US']}
               title={node.data.target.fields.title['en-US']}
               category={node.data.target.fields.category['en-US']}
+              thumbnailTitle={node.data.target.fields.thumbnail['en-US'].fields.title['en-US']}
               thumbnailUrl={node.data.target.fields.thumbnail['en-US'].fields.file['en-US'].url}
               publishedDate={moment.utc(node.data.target.fields.publishedDate['en-US']).format("MMMM Do, YYYY")}
               shortDescription={node.data.target.fields.shortDescription['en-US']}

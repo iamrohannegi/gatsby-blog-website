@@ -24,6 +24,7 @@ export const query = graphql`
                 shortDescription,
                 category,
                 thumbnail {
+                  title
                   file {
                     url
                   }
@@ -110,7 +111,7 @@ const PostList = ({ data, pageContext }) => {
     const posts = data.allContentfulBlogPost.edges;
     const { categories, category } = pageContext; 
     return (
-        <Layout title="Blog | Robin Singh">
+        <Layout title="Blog | Robin Singh" description="List of all blogs">
           <Header>
             <h1>Blog</h1>
             <SearchBar />
@@ -133,6 +134,7 @@ const PostList = ({ data, pageContext }) => {
                   title={edge.node.title}
                   category={edge.node.category}
                   thumbnailUrl={edge.node.thumbnail.file.url}
+                  thumbnailTitle={edge.node.thumbnail.title}
                   publishedDate={edge.node.publishedDate}
                   shortDescription={edge.node.shortDescription}
                 />

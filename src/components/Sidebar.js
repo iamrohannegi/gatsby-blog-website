@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { FaHome, FaFeatherAlt, FaGrinBeam, FaAddressCard, FaFacebook, FaLinkedin, FaInstagram} from 'react-icons/fa';
+import { FaHome, FaFeatherAlt, FaGrinBeam, FaAddressCard } from 'react-icons/fa';
 import styled, { css } from 'styled-components';
 
+import SocialLinks from './SocialLinks';
 import ToggleThemeSlider from './ToggleThemeSlider';
 
 const SidebarContainer = styled.aside`
@@ -81,15 +82,6 @@ const SocialLinksContainer = styled.div`
     font-size: 1.8rem;
 `;
 
-const SocialIcon = styled.a`
-    font-size: 2.5rem;
-    color: grey;
-    margin-right: 1.2rem;
-
-    &:hover {
-        color: var(--${({ socialSiteName }) => socialSiteName});
-    }
-`;
 
 const Sidebar = ({ hamburger }) => {
     return (
@@ -131,17 +123,7 @@ const Sidebar = ({ hamburger }) => {
                     <ToggleThemeSlider />
                     <SocialLinksContainer>
                         <p>Social Links</p>
-                        <div>
-                            <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="facebook" aria-label="Facebook">                        
-                                <FaFacebook/>
-                            </SocialIcon>                        
-                            <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="linkedin" aria-label="Linked in">                        
-                                <FaLinkedin/>
-                            </SocialIcon>                        
-                            <SocialIcon href="https://www.google.com" target="_blank" rel="noopener noreferrer" socialSiteName="instagram" aria-label="Instagram">                        
-                                <FaInstagram/>
-                            </SocialIcon>                        
-                        </div>
+                        <SocialLinks fontSize="2.5rem"/>
                     </SocialLinksContainer>
                 </SidebarFooter>  
             }

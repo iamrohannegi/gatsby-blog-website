@@ -62,12 +62,14 @@ const ToggleThemeSlider = () => {
                                 type="checkbox" 
                                 onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
                                 checked={theme === 'dark'}
-                                id="checkbox"
+                                id="theme"
+                                name="theme"
+                                aria-label="Theme checkbox"
                             />
-                            <SliderLabel htmlFor="checkbox">
-                                <FaSun />
-                                <FaMoon />
-                                <Ball />
+                            <SliderLabel htmlFor="theme">
+                                <FaSun aria-label="Change to light theme"/>
+                                <FaMoon aria-label="Change to dark theme"/>
+                                <Ball aria-label="Change theme"/>
                             </SliderLabel>
                         </div>
                         

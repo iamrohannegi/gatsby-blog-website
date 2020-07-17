@@ -160,6 +160,7 @@ export const query = graphql`
         contentfulBlogPost( slug: { eq: $slug }) {
             title,
             slug,
+            shortDescription,
             publishedDate (formatString: "MMMM Do, YYYY"),
             minuteRead,
             category,
@@ -175,9 +176,10 @@ const BlogPage = ({ data, pageContext }) => {
     return (
         <Wrapper>
             <GlobalStyles />
-            <Head title={`${data.contentfulBlogPost.title} | Robin Singh`}>
-                <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
-            </Head>
+            <Head 
+                title={`${data.contentfulBlogPost.title} | Robin Singh`} 
+                description={data.contentfulBlogPost.shortDescription}
+            />       
             <HeaderBlogPage/>
 
             <MainContent>
