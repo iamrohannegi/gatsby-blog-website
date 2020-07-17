@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
     background: var(--btn-primaryBgColor);
     border: none;
     border-radius: 20px;

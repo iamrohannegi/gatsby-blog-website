@@ -1,12 +1,16 @@
 import React from "react";
-import Layout from '../components/Layout';
 
+import Layout from '../components/Layout';
+import RecentPosts from '../components/RecentPosts';
 
 const IndexPage = () => {
   return (
     <Layout title="Home | Robin Singh">
-      <h1> Home Page </h1>
+      <h1> Home </h1>
       <p>This is my front page people!.</p>
+      <div style={{"height": "800px"}}>
+      </div>
+      <RecentPosts />
     </Layout>
   );
 }

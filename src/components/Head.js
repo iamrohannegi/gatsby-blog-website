@@ -7,6 +7,7 @@ const Head = ({ title, children }) => (
         <title>{ title ? title : 'Robin Singh'}</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
         { children }
+        <html lang="en" />
     </Helmet>
 );
 

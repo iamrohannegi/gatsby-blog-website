@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, Hits, connectStateResults } from 'react-instantsearch-dom';
@@ -34,7 +34,6 @@ const HitsWrapper = styled.div`
     left: -15%;
     width: 130%;
     z-index: 2;
-
     &:before {
         content: '';
         border-left: 12px solid transparent;
@@ -83,12 +82,19 @@ const SearchBar = () => {
     const searchClient = algoliasearch('LKN3NXXYLP', '6ed86ad04fbb742ace166f1742282173');
     const [query, setQuery] = useState(``);
     const [focus, setFocus] = useState(false);
-  
+    const mounted = useRef();
+    useEffect(() => {
+        mounted.current = true;
+
+        return () => {
+            mounted.current = false;
+        };
+    });
 
     return (
         <SearchBarWrapper>
             <InstantSearch searchClient={searchClient} indexName="Blog" onSearchStateChange={({ query }) => setQuery(query)}>
-                <SearchInput onFocus={() => setFocus(true)} onBlur={() => setTimeout(() => {setFocus(false)}, 100)}/>
+                <SearchInput onFocus={() => setFocus(true)} onBlur={() => setTimeout(() => { if(mounted.current) setFocus(false)}, 140)}/>
                 <HitsWrapper show={query.length > 0 && !(query.trim() === '') && focus}>
                     <Stats />
                     <Results>

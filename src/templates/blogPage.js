@@ -50,7 +50,7 @@ const MainContentHeader = styled.header`
 const Title = styled.h1`
     font-size: 7rem;
     margin: 0 0 2rem 0;
-
+    word-break: break-word;
     @media only screen and (max-width: 420px){
         font-size: 5.5rem;
     }
@@ -88,7 +88,7 @@ const BlogMetadata = styled.div`
         }
     }
 
-    @media only screen and (max-width: 355px){
+    @media only screen and (max-width: 365px){
         flex-direction: column;
         align-items: flex-start;
         div + div{
@@ -111,7 +111,7 @@ const BlogMetadataDiv = styled.div`
 `;
 
 const MainContentText = styled.section`
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
     
     .richtext-paragraph {
         font-family: 'Merriweather', serif;
@@ -121,7 +121,7 @@ const MainContentText = styled.section`
 
     .heading{
         margin: 5rem 0 3rem 0;
-        word-break: break-all;
+        word-break: break-word;
     }
 
     .h1{
@@ -136,6 +136,9 @@ const MainContentText = styled.section`
         margin: 2rem 0;
     }
 
+    ul, ol {
+        padding: 0 1em;
+    }
     .richtext-ul li{
         list-style-type: disc;
     }
@@ -197,14 +200,14 @@ const BlogPage = ({ data, pageContext }) => {
                                     <FaClock />
                                     <p>{`${data.contentfulBlogPost.minuteRead} min read`}</p>
                                 </BlogMetadataDiv>
-                                <ShareButton slug={data.contentfulBlogPost.slug}/>
+                                <ShareButton slug={data.contentfulBlogPost.slug} title={data.contentfulBlogPost.title}/>
                             </BlogMetadata> 
                         </MainContentHeader>
 
                         <MainContentText>
                             { documentToReactComponents(data.contentfulBlogPost.body.json, options) }
                         </MainContentText>
-                        <ShareButton active slug={data.contentfulBlogPost.slug} fontSizeRem={2.5} gap="2rem" margin="3rem 0" />
+                        <ShareButton active slug={data.contentfulBlogPost.slug} title={data.contentfulBlogPost.title} fontSizeRem={2.5} gap="2rem" margin="3rem 0" />
                         <Pager pageContext={pageContext}></Pager>
                     </article>
                 </Container>

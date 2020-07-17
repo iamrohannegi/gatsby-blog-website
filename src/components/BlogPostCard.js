@@ -12,16 +12,13 @@ const BlogPost = styled(Link)`
     margin-bottom: 3rem;
     padding: 2rem;
     transition: all 0.1s ease-in-out;
-
     &:hover {
         transform: translateY(-0.4rem);
         box-shadow: 0px 7px 2px 0px var(--postCard-hoverColor);
     }
-
    @media (max-width: 700px) {
        flex-direction: column;
    }
-
    @media (max-width: 450px) {
        padding: 2rem 1.3rem 1rem 1.3rem;
    }
@@ -37,17 +34,14 @@ const ThumbnailImage = styled.picture`
         object-fit: cover;
         width: 100%;
     }
-
     @media (max-width: 1550px) {
         flex-basis: 50%;   
     }
-
     @media (max-width: 700px) {
         img {
             height: 250px;
         }
     }
-
     @media (max-width: 400px) {
         img {
             max-height: 250px;
@@ -62,7 +56,6 @@ const BlogPostContent = styled.div`
     flex-direction: column;
     padding: 0 3rem;
     margin: 1.5rem 0;
-
     @media (max-width: 700px) {
         margin: 2.5rem 0 2rem 0;
         padding: 0 1rem;
@@ -78,7 +71,6 @@ const BlogMetadata = styled.div`
     p {
         margin: 0;
     }
-
     @media (max-width: 400px) {
         flex-direction: column;
         align-items: flex-start;
@@ -90,11 +82,9 @@ const BlogCategory = styled.div`
     display: flex;
     margin-left: 2rem; 
     color: var(--secondaryTextColor);
-
     p {
         margin-left: 0.5rem;
     }
-
     @media (max-width: 400px) {
         margin: 0.5rem 0 0 0;
     }
@@ -104,17 +94,22 @@ const TitleHeading = styled.h2`
     display: inline-block;
     color: var(--primaryTextColor);
     margin: 0 0 1rem 0;;
+    word-break: break-word;
+    width: 90%;
+
+    @media (max-width: 450px) {
+        width: 100%;
+    }
 `;
 
 const Description =  styled.p`
     line-height: 1.5; 
     margin: 0;
     width: ${({ widerflex }) => widerflex ? '95%' : '70%'};
-
+    word-break: break-word;
     @media (max-width: 1550px) {
         width: 95%;   
     }
-
     @media (max-width: 450px) {
         width: 100%;
     }
@@ -132,8 +127,8 @@ const BlogPostCard = ({
     return (
         <BlogPost to={`/blog/${slug}`} key={slug}>
             <ThumbnailImage widerflex={widerflex}>
-                <source media="(min-width: 450px)" srcSet={`${thumbnailUrl}?fm=webp&w=800&q=90`} />
-                <source srcSet={`${thumbnailUrl}?fm=webp&w=800&q=90`} />
+                <source media="(min-width: 480px)" srcSet={`${thumbnailUrl}?fm=webp&w=550&q=90`} />
+                <source srcSet={`${thumbnailUrl}?fm=webp&w=350&q=90`} />
                 <img src={thumbnailUrl}/>
             </ThumbnailImage>
                 

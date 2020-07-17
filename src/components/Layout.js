@@ -10,7 +10,6 @@ import HeaderNav from './HeaderBlogPage';
 const LoadContentAnim = keyframes`
     0% {
         opacity: 0;
-        transform: translateY(-1rem);
     }
 
     100% {
@@ -20,13 +19,18 @@ const LoadContentAnim = keyframes`
 `;
 
 const MainContentWrapper = styled.main`
+    animation: ${LoadContentAnim} 0.5s ease-in-out forwards;
     background-color: var(--primary-bgcolor);
     color: var(--primaryTextColor);
+    margin-left: 300px;             
     min-height: 100vh;
     padding: 4rem;
-    margin-left: 300px;             
-    animation: ${LoadContentAnim} 0.5s ease-in-out forwards;
-
+    transform: translateY(-1rem);
+    
+    p {
+        line-height: 1.5; 
+    }
+    
     @media only screen and (max-width: 1400px) {
         padding: 4rem 1rem;
     }
@@ -34,6 +38,7 @@ const MainContentWrapper = styled.main`
     @media only screen and (max-width: 1100px) {
         margin: 0;
         padding: 4rem 0;
+        transform: none;                                
     }
 `;
 
@@ -59,10 +64,10 @@ const Layout = ({ title, children}) => {
         <div>
             <GlobalStyles />
             <Head title={title}/>
-            <MediaQuery query="only screen and (max-width: 1100px)">
+            <MediaQuery query="(max-width: 1100px)">
                 <HeaderNav/>
             </MediaQuery>
-            <MediaQuery query="only screen and (min-width: 1101px)">
+            <MediaQuery query="(min-width: 1101px)">
                 <Sidebar />
             </MediaQuery>
             <MainContentWrapper>

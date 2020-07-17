@@ -5,8 +5,8 @@ import Layout from '../components/Layout';
 const AboutPage = () => {
   return (
     <Layout title="About | Robin Singh">
-        <h1> About Page </h1>
-        <p> This is my about page yall.</p>
+        <h1> About </h1>
+          <p> Under Construction </p>
     </Layout>
   );
 }

@@ -63,7 +63,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
     paginate({
         createPage,
         items: res.data.allContentfulBlogPost.edges,
-        itemsPerPage: 3,
+        itemsPerPage: 6,
         pathPrefix: '/blog',
         component: postListTemplate,
         context: {
@@ -78,7 +78,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         paginate({
             createPage,
             items: categoryBlogList[category],
-            itemsPerPage: 3,
+            itemsPerPage: 6,
             pathPrefix: `/blog/category/${categorySlug}`,
             component: postListTemplate,
             context: {

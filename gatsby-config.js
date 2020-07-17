@@ -23,8 +23,6 @@ module.exports = {
     title: 'Robin Singh'
   },
   plugins: [
-    'gatsby-plugin-sharp',
-    
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {

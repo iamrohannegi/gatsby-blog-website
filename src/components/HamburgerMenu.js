@@ -34,8 +34,8 @@ const Menu = styled.div`
 const CloseButton = styled(HamburgerButton)`
     color: var(--primaryTextColor);
     position: fixed;
-    top: 2vh; 
-    left: 85vw;
+    top: 5vh; 
+    left: 6vw;
     opacity: 0.5;
     z-index: 2;
 `;

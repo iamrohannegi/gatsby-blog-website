@@ -31,7 +31,7 @@ const PageLinkButton = styled(Link) `
     }
 `
 
-const PageLinkCard = styled(Link)`
+const PageLinkCard = styled(({alignItems, ...rest}) => <Link {...rest}/>)`
     color: var(--primaryTextColor);
     display: flex;
     flex-direction: column;
@@ -70,6 +70,7 @@ const PageLinkNavText = styled(PageLinkText)`
 `;
 const PageLinkTitle = styled(PageLinkText)`
     padding: 0 1rem;
+    word-break: break-word;s
 `;
 
 const PageLinkTitleDiv = styled.div`

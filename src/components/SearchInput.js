@@ -24,6 +24,7 @@ const Input = styled.input`
         outline: none;
     }
 
+
     @media (max-width: 700px) {
       width: 100%;
     }

@@ -23,7 +23,10 @@ const NewsletterForm = () => {
                 const mail = email.trim();
                 if(mail){
                     const res = await addToMailchimp(mail);
-                    setResult(res);
+                    setResult(res.result);
+                    if(res.result === 'error'){
+                        window.open('http://eepurl.com/g8S8D9', '_blank');
+                    }
                 }
                 setEmail('');
             }}>

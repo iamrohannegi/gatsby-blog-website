@@ -8,6 +8,7 @@ import moment from 'moment';
 const MainContentImg = styled.picture`
     img {
         width: 100%;
+        margin: 3rem 0 5rem 0;
     }
 `;
 
@@ -16,7 +17,6 @@ const Blockquote = styled.blockquote`
     border-left: 8px solid #323DA5;
     margin: 0 0 4rem 0;
     padding: 3rem 2rem;
-
     span {
         display: inline-block;
         padding: 1rem;
@@ -28,7 +28,6 @@ const Hyperlink = styled.a.attrs(() => ({
     rel: 'noopener noreferrer'
 }))`
     color: var(--blog-linkColor);
-
     &:hover {
         text-decoration: underline
     }
@@ -51,8 +50,8 @@ export default {
             const src = `${node.data.target.fields.file['en-US'].url}?fm=jpg&fl=progressive&fit=pad&w=1200&q=70`;
             return (
                 <MainContentImg>
-                    <source media="(min-width: 800px)" srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=1200&h=500&fit=fill&q=80`} type="image/webp"  />
-                    <source media="(min-width: 450px)" srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=800&h=400&fit=fill&q=80`} type="image/webp"  />
+                    <source media="(min-width: 800px)" srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=1000&h=400&fit=fill&q=70`} type="image/webp"  />
+                    <source media="(min-width: 450px)" srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=800&h=300&fit=fill&q=80`} type="image/webp"  />
                     <source srcSet={`${node.data.target.fields.file['en-US'].url}?fm=webp&w=400&q=80`} />
                     <img alt={alt} src={src} />
                 </MainContentImg>

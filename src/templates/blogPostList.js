@@ -38,7 +38,6 @@ const Header = styled.header`
     align-items: center;
     display: flex;
     margin: 1.2rem 0 5rem 0;
-
     h1 {
       margin: 0 0 0 1.4rem;
       flex: 1 1 0;
@@ -47,7 +46,6 @@ const Header = styled.header`
     @media (max-width: 700px) {
       flex-wrap: wrap;
     }
-
     @media (max-width: 388px) {
       align-items: flex-start;
       flex-direction: column;
@@ -61,7 +59,6 @@ const CategoryHeader = styled.header`
     justify-content: space-between;
     font-size: 2rem;
     margin: 9.3rem 0 4rem 0;
-
     h2 {    
       color: var(--secondaryTextColor); 
       font-size: 2.5rem; 
@@ -71,11 +68,9 @@ const CategoryHeader = styled.header`
         font-weight: 700;
       }
     }
-
     @media only screen and (max-width: 1100px){
       margin-top: 2rem;
     }
-
     @media (max-width: 650px) {
       align-items: flex-start;
       flex-direction: column;
@@ -105,7 +100,6 @@ const RemoveFilter = styled(Link)`
       color: #fff;
       background: #5A62B3;
   }
-
   @media (max-width: 650px) {
     margin: 1rem 0 0 0;
     width: 100%;
