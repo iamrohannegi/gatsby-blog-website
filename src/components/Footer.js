@@ -128,7 +128,7 @@ const Footer = () => (
             <Container>
                 <FooterFlex>
                     <FooterSiteDescription>
-                        <h2>Robin Singh</h2>
+                        <h2>Site Name</h2>
                         <SocialLinks color="#fff" />
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum rem illum ad? Voluptatem labore unde sunt perferendis vel iste, maiores iure, eligendi doloribus necessitatibus nesciunt?</p>
                     </FooterSiteDescription>  
