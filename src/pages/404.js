@@ -29,7 +29,7 @@ const StyledLink = styled(StyledButton)`
 
 
 const PageNotFound = () => (
-    <Layout title="Page Not Found | Robin Singh" description="Page Not Found">
+    <Layout title="Page Not Found | Site Name" description="Page Not Found">
         <h1> Page Not Found </h1>
 
         <VideoContainer>
