@@ -177,7 +177,7 @@ const BlogPage = ({ data, pageContext }) => {
         <Wrapper>
             <GlobalStyles />
             <Head 
-                title={`${data.contentfulBlogPost.title} | Robin Singh`} 
+                title={`${data.contentfulBlogPost.title} | Site Name`} 
                 description={data.contentfulBlogPost.shortDescription}
             />       
             <HeaderBlogPage/>
