@@ -20,7 +20,7 @@ const queries = [
 
 module.exports = {
   siteMetadata: {
-    title: 'Robin Singh',
+    title: 'Blog Title',
     siteUrl: 'https://jolly-mccarthy-4981ec.netlify.app/'
   },
   plugins: [
